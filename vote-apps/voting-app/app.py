@@ -12,7 +12,9 @@ option_a = os.getenv('OPTION_A', "Cats")
 option_b = os.getenv('OPTION_B', "Dogs")
 hostname = socket.gethostname()
 
-redis = connect_to_redis("voteapps_redis_1")
+redis_hostname = os.getenv('REDIS_HOST', "voteapps_redis_1")
+
+redis = connect_to_redis(redis_hostname)
 app = Flask(__name__)
 
 
