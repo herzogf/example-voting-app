@@ -24,7 +24,11 @@ io.sockets.on('connection', function (socket) {
 async.retry(
   {times: 1000, interval: 1000},
   function(callback) {
-    pg.connect('postgres://postgres@voteapps_db_1/postgres', function(err, client, done) {
+    var dbHost = process.env['DB_HOST'];
+  	if(!dbHost){
+  		dbHost = 'voteapps_db_1';
+  	}
+    pg.connect('postgres://' + dbHost + '/postgres', function(err, client, done) {
       if (err) {
         console.error("Failed to connect to db");
       }
