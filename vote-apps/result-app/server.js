@@ -26,9 +26,10 @@ async.retry(
   function(callback) {
     var dbHost = process.env['DB_HOST'];
   	if(!dbHost){
-  		dbHost = 'voteapps_db_1';
+  		dbHost = 'voteapps_db_2';
   	}
-    pg.connect('postgres://' + dbHost + '/postgres', function(err, client, done) {
+  	var dbConnUrl = 'postgres://postgres@' + dbHost + '/postgres';
+  	pg.connect(dbConnUrl, function(err, client, done) {
       if (err) {
         console.error("Failed to connect to db");
       }
